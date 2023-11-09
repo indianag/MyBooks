@@ -1,0 +1,47 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.contenedor{
+    border: 3px solid red;
+    height: 15vh;
+    color: white;
+    background-color: black;
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.menu{
+    border: 3px solid yellow;
+    width: 60%;
+    height: 100%;
+    font-size: 20px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+
+}
+.logo{
+    height: 2rem;
+}
+.link{
+    width: 30%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content:space-evenly; 
+}
+a{
+    text-decoration: none;
+    color: white;
+    
+} */
+
