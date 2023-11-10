@@ -19,18 +19,14 @@ export class ProfileComponent implements OnInit {
     return this.myUser.nombreCompleto();
   }
 
-  enviar(nuevoNombre: HTMLInputElement){
-    console.log(this.myUser.name);
+  enviar(nuevoNombre: HTMLInputElement,nuevoApp:HTMLInputElement, email:HTMLInputElement, url:HTMLInputElement){
+
     this.myUser.name = nuevoNombre.value;
-    console.log(this.myUser.name);
-
-    console.log(this.myUser.last_name);
     this.myUser.last_name = nuevoNombre.value;
-    console.log(this.myUser.last_name);
-
-    console.log(this.myUser.email);
     this.myUser.email = nuevoNombre.value;
-    console.log(this.myUser.email);
+    console.log(this.myUser);
+    
+  
   }
 
 ngOnInit(): void {
