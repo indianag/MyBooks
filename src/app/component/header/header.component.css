@@ -7,8 +7,8 @@
     /* border: 3px solid rgb(208, 255, 0); */
     
     height: 5vh;
-    position: relative;
-    top: 263px;
+    position: fixed;
+    top: 226px;
     left: 127px;
     width: 79%;
     

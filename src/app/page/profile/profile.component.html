@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="bienvenido">
+        <div class="form-body">
+            <img src="https://th.bing.com/th/id/OIP.5fk7fHKYX1AxID3WNOMekwHaE8?pid=ImgDet&rs=1" alt="user-longi">
+            <p class="nombre">{{myUser.nombreCompleto()}}</p>
+            <div class="login-form1">
+                <div class="text1" >Nombre:
+                    <div class="mostrar">
+                        <p>{{myUser.name}}</p>
+                    </div>
+                </div>
+                <div class="text1" >Apellido:
+                    <div class="mostrar">
+                        <p>{{myUser.last_name}}</p>
+                    </div>
+                </div>
+                <div class="text1" >correo:
+                    <div class="mostrar">
+                        <p>{{myUser.email}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-body">
+            <p class="text">Editar datos</p>
+            <form class="login-form">
+                <input type="text" #input1 placeholder="Nombre">
+                <input type="text" #input2 placeholder="Apellido">
+                <input type="text" #input3 placeholder="Correo">
+                <input type="text" #input4 placeholder="Url">
+                <button (click)="enviar(input1)">Modificar</button>
+            </form>
+        </div>
+    </div> 
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ <!-- <input type="text" [value]="myUser.name" placeholder="Nombre">
+ <input type="text" [value]="myUser.last_name" placeholder="Apellido">
+ <input type="text" [value]="myUser.email"placeholder="Correo">
+ <input type="text" [value]="myUser.photo"placeholder="Url">
+ <button (click)="enviar()">Modificar</button> -->
