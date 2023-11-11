@@ -1,0 +1,68 @@
+<div class="bienvenido">
+    <div class="container">
+        <div *ngIf="books.length === 0; else booksList">
+            <p>No hay libros disponibles</p>
+        </div>
+
+        <ng-template #booksList>
+            <div *ngFor="let book of books; let even = even">
+                <div [ngClass]="{'even-card': even, 'odd-card': !even}">
+                    <div class="card">
+                        <img src="https://imagessl9.casadellibro.com/a/l/t0/69/9788420672069.jpg">
+                        <h4>Grandes Literaturas</h4>
+                        <h2>{{ book.title }}</h2>
+                        <p>Autor: {{ book.author }}</p>
+                        <!-- <p> {{ codigoPipe.transform(book.id_book) }}</p> -->
+                        <p>{{ book.price }} €</p>
+                        <button class="btn" type="button">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        
+
+
+
+
+
+
+
+        <!-- <div class="form-body">
+            <div class="login-form1">
+                <div class="text1" >Nombre:
+                    <div class="mostrar">
+                        <p>{{}}</p>
+                    </div>
+                </div>
+                <div class="text1" >Apellido:
+                    <div class="mostrar">
+                        <p>{{}}</p>
+                    </div>
+                </div>
+                <div class="text1" >correo:
+                    <div class="mostrar">
+                        <p>{{}}</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="form-body">
+            <p class="text">Añadir Libro</p>
+            <form (submit)="addBook()" class="login-form">
+                <input type="text" #input1 placeholder="Titulo">
+                <input type="text" #input2 placeholder="Tapa blanda/dura">
+                <input type="text" #input3 placeholder="Autor">
+                <input type="text" #input4 placeholder="Precio">
+                <input type="text" #input5 placeholder="Photo">
+                <input type="number" id="id_book" [(ngModel)]="newBook.id_book" required>
+                <button type="submit">Insertar Libro</button>
+            </form>
+        </div>
+    </div> 
+</div>
+
+
+
+
+
+

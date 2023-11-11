@@ -9,6 +9,9 @@ import { HomeComponent } from './page/home/home.component';
 import { FormRegisterComponent } from './component/form-register/form-register.component';
 import { RegisterComponent } from './page/register/register.component';
 import { ProfileComponent } from './page/profile/profile.component';
+import { BooksComponent } from './page/books/books.component';
+import { FormsModule } from '@angular/forms';
+import { CodigoPipe } from './pipes/codigo.pipe';
 
 
 
@@ -21,12 +24,15 @@ import { ProfileComponent } from './page/profile/profile.component';
     FormRegisterComponent,
     RegisterComponent,
     ProfileComponent,
+    BooksComponent,
+    CodigoPipe,
    
   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
