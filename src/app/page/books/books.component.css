@@ -17,8 +17,8 @@
     background-size: cover;
 }
 .container{
-    border: 3px solid red;
-    height:80%;
+    /* border: 3px solid red; */
+    height:auto;
     
 
     display: flex;
@@ -122,7 +122,7 @@
     font-weight: 600;
     color: #fff;
     margin-bottom: 25px;
-    margin: 20px;
+    margin: 5px;
 }
 .form-body input{
     display: block;
