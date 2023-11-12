@@ -12,6 +12,7 @@ import { ProfileComponent } from './page/profile/profile.component';
 import { BooksComponent } from './page/books/books.component';
 import { FormsModule } from '@angular/forms';
 import { CodigoPipe } from './pipes/codigo.pipe';
+import { CardComponent } from './component/card/card.component';
 
 
 
@@ -26,6 +27,7 @@ import { CodigoPipe } from './pipes/codigo.pipe';
     ProfileComponent,
     BooksComponent,
     CodigoPipe,
+    CardComponent,
    
   
   ],

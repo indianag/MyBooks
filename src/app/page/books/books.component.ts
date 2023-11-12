@@ -19,5 +19,11 @@ export class BooksComponent {
     this.books.push(this.newBook);
     this.newBook = new Book();
   }
+  eliminarBook(book:any){
+    const index = this.books.indexOf(book);
+    if(index !== -1) {
+      this.books.splice(index, 1);
+    }
+  }
 
 }
