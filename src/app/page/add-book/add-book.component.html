@@ -1,0 +1,15 @@
+<div class="bienvenido">
+<div class="form-body">
+    <p class="text">Añadir Libro</p>
+    <form (submit)="addBook()" class="login-form">
+        <input type="number" id="id_book" name="id_book" [(ngModel)]="nuevoLibro.id_book" [ngModelOptions]="{standalone: true}" placeholder="Libro" />
+        <input type="text" id="id_user" [(ngModel)]="nuevoLibro.id_user" [ngModelOptions]="{standalone: true}" placeholder="Usuario" />
+        <input type="text" id="title" [(ngModel)]="nuevoLibro.title" [ngModelOptions]="{standalone: true}" placeholder="Titulo" />
+        <input type="text" id="type" [(ngModel)]="nuevoLibro.type" [ngModelOptions]="{standalone: true}" placeholder="Tapa blanda/dura" />
+        <input type="text" id="author" [(ngModel)]="nuevoLibro.author" [ngModelOptions]="{standalone: true}" placeholder="Autor" />
+        <input type="text" id="price" [(ngModel)]="nuevoLibro.price" [ngModelOptions]="{standalone: true}" placeholder="Precio" />
+        <input type="text" id="photo" [(ngModel)]="nuevoLibro.photo" [ngModelOptions]="{standalone: true}" placeholder="Photo" />
+        <button type="submit">Insertar Libro</button>
+    </form>
+</div>
+</div>

@@ -16,77 +16,78 @@
     background-repeat: no-repeat;
     background-size: cover;
 } */
-/* .container{
-    border: 3px solid red;
-    height:auto;
+.containerCard{
+    /* border: 3px solid red; */
+    
     
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;    
+    /* flex-direction: column;
+    justify-content: center;     */
 
     width: 100%;
     max-width: 1200px;
-    height: 430px;
+    height: 630px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin:auto;
     
-} */
+}
 
-.container .card{
+.containerCard .card{
     width: 250px;
-    height: 380px;
+    height: 580px;
     border-radius: 8px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     text-align: center;
     transition: all 0.25s;
 }
-.container .card:hover{
+.containerCard .card:hover{
     transform: translateY(-15px);
     box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
 }
-.container .card img{
+.containerCard .card img{
     width: 250px;
     height: 220px;
 }
-.container .card h4{
+.containerCard .card h4{
     font-weight: 400;
 }
-.container .card h2{
+.containerCard .card h2{
     font-weight: 600;
 }
 
-.container .card p{
+.containerCard .card p{
     padding: 0 1rem;
     font-size: 16px;
     font-weight: 300;
 }
-.container .card .btn{
+.containerCard .card .btn{
+    position: fixed;
     background-color: rgba(57, 10, 91, 0.023);
     border: 10px;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     color: rgb(57, 10, 91);
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
 }
-.container .card .btn:hover{
+.containerCard .card .btn:hover{
     background-color:rgb(57, 10, 91);
     color: white;
 
 }
 
-.container .even-card{
+.containerCard  .even-card{
     background-color: rgba(33, 14, 154, 0.442);
     width: 250px;
-    height: 380px;
+    height: 580px;
 }
-.container .odd-card{
+.containerCard .odd-card{
     background-color: rgba(51, 57, 70, 0.382);
     width: 250px;
-    height: 380px;
+    height: 580px;
 }

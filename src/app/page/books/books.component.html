@@ -1,41 +1,21 @@
 <div class="bienvenido">
     <div class="container">
-        <div *ngIf="books.length === 0; else booksList">
-            <p>No hay libros disponibles</p>
-        </div>
+        <div class="barra">
+                <input type="number" id="id_book" name="id_book" [(ngModel)]="searchId" [ngModelOptions]="{standalone: true}" placeholder="id_book"/>
+                <button type="submit"(click)="search()" class="btn">Buscar</button>
+         </div>
 
-        <ng-template #booksList>
-            <div *ngFor="let book of books; let even = even">
-                <app-card [datosBook]="book" (eliminar)="eliminarBook(book)"></app-card>
-                <div [ngClass]="{'even-card': even, 'odd-card': !even}">
-                    <div class="card">
-                        <img src="https://imagessl9.casadellibro.com/a/l/t0/69/9788420672069.jpg">
-                        <h4>Grandes Literaturas</h4>
-                        <h2>{{ book.title }}</h2>
-                        <p>Autor: {{ book.author }}</p>
-                        <p> {{ book.id_book | codigo }}</p>
-                        <p>{{ book.price }} €</p>
-                        <button class="btn" type="button">Comprar</button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        
-        <div class="form-body">
-            <p class="text">Añadir Libro</p>
-            <form (submit)="addBook()" class="login-form">
-                <input type="number" id="id_book" name="id_book" [(ngModel)]="newBook.id_book" [ngModelOptions]="{standalone: true}" placeholder="Libro" />
-                <input type="text" id="id_user" [(ngModel)]="newBook.id_user" [ngModelOptions]="{standalone: true}" placeholder="Usuario" />
-                <input type="text" id="title" [(ngModel)]="newBook.title" [ngModelOptions]="{standalone: true}" placeholder="Titulo" />
-                <input type="text" id="type" [(ngModel)]="newBook.type" [ngModelOptions]="{standalone: true}" placeholder="Tapa blanda/dura" />
-                <input type="text" id="author" [(ngModel)]="newBook.author" [ngModelOptions]="{standalone: true}" placeholder="Autor" />
-                <input type="text" id="price" [(ngModel)]="newBook.price" [ngModelOptions]="{standalone: true}" placeholder="Precio" />
-                <input type="text" id="photo" [(ngModel)]="newBook.photo" [ngModelOptions]="{standalone: true}" placeholder="Photo" />
-                <button type="submit">Insertar Libro</button>
-            </form>
+    <!-- <div *ngIf="books.length === 0; else booksList">
+        <p>No hay libros disponibles</p>
+    </div> -->
+    <ng-template #booksList>
+        <div *ngFor="let book of getDisplayedBooks(); let even = even">
+            <app-card [datosBook]="book" (eliminar)="deleteBook(book.id)"></app-card>
+            <div [ngClass]="{'even-card': even, 'odd-card': !even}"></div>
         </div>
-    </div> 
+    </ng-template>
 </div>
+</div> 
 
 
 

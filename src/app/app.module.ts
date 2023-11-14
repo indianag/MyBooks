@@ -13,6 +13,10 @@ import { BooksComponent } from './page/books/books.component';
 import { FormsModule } from '@angular/forms';
 import { CodigoPipe } from './pipes/codigo.pipe';
 import { CardComponent } from './component/card/card.component';
+import { UpdateBookComponent } from './page/update-book/update-book.component';
+import { AddBookComponent } from './page/add-book/add-book.component';
+import { FormBookService } from './shared/form-book.service';
+import { BooksService } from './shared/books.service';
 
 
 
@@ -28,6 +32,8 @@ import { CardComponent } from './component/card/card.component';
     BooksComponent,
     CodigoPipe,
     CardComponent,
+    UpdateBookComponent,
+    AddBookComponent,
    
   
   ],
@@ -36,7 +42,7 @@ import { CardComponent } from './component/card/card.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [FormBookService, BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
