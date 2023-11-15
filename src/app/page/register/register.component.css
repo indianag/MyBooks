@@ -4,7 +4,7 @@
     box-sizing: border-box;
     overflow: hidden;
 }
-.container{
+.pag{
     /* border: 3px solid red; */
     height:98vh;
     background-image: url("../../../../src/assets/img/FONDO.SHADOW.png");
