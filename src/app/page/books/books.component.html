@@ -1,20 +1,18 @@
 <div class="bienvenido">
     <div class="container">
         <div class="barra">
-                <input type="number" id="id_book" name="id_book" [(ngModel)]="searchId" [ngModelOptions]="{standalone: true}" placeholder="id_book"/>
-                <button type="submit"(click)="search()" class="btn">Buscar</button>
-         </div>
-
-    <!-- <div *ngIf="books.length === 0; else booksList">
-        <p>No hay libros disponibles</p>
-    </div> -->
-    <ng-template #booksList>
-        <div *ngFor="let book of getDisplayedBooks(); let even = even">
-            <app-card [datosBook]="book" (eliminar)="deleteBook(book.id)"></app-card>
-            <div [ngClass]="{'even-card': even, 'odd-card': !even}"></div>
+            <input type="number" id="id_book" name="id_book" [(ngModel)]="searchId" [ngModelOptions]="{standalone: true}" placeholder="id_book"/>
+            <button type="submit"(click)="searchBookById()" class="btn">Buscar</button>
         </div>
-    </ng-template>
-</div>
+    
+
+        <div class="tarjetas">
+            <div *ngFor="let book of books; let even = even">
+                <app-card [datosBook]="book" (eliminar)="deleteBook($event)"></app-card>
+                <div [ngClass]="{'even-card': even, 'odd-card': !even}"></div>
+            </div>
+        </div>
+    </div>
 </div> 
 
 

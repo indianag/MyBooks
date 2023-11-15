@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { BooksService } from 'src/app/shared/books.service';
 
@@ -8,27 +8,23 @@ import { BooksService } from 'src/app/shared/books.service';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent {
-  @Input() datosBook: Book= {id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"};
-  @Output() eliminar = new EventEmitter<void>();
-  @Input() even: Event;
+export class CardComponent  {
+books: Book[];
+@Input() datosBook: Book;
+@Output() eliminar = new EventEmitter<number>();
+@Input() even: Event;
 
-    eliminarTarjeta(){
-      this.eliminar.emit();
+
+  constructor(private bookService: BooksService){
+
+  }
+
+    eliminarTarjeta(books:Book){
+
+      this.eliminar.emit(books.id_book);
     }
+
 }
 
 
 
-
-
-
-// export class CardComponent {
-//   @Input() datosBook: Book;
-//   @Output() eliminar = new EventEmitter<void>();
-//   @Input() even: Event;
-
-//     eliminarTarjeta(){
-//       this.eliminar.emit();
-//     }
-// }

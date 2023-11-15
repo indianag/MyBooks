@@ -1,7 +1,7 @@
 <div class="container">
     <div class="form-body">
         <p class="text">Modificar Libro</p>
-        <form (ngSubmit)="updateBook" class="login-form">
+        <form (ngSubmit)="updateBook()" class="login-form">
             <input type="number" id="id_book" name="id_book" [(ngModel)]="bookToUpdate.id_book" [ngModelOptions]="{standalone: true}" placeholder="Libro" required>
             <input type="text" id="id_user" [(ngModel)]="bookToUpdate.id_user" [ngModelOptions]="{standalone: true}" placeholder="Usuario" required>
             <input type="text" id="title" [(ngModel)]="bookToUpdate.title" [ngModelOptions]="{standalone: true}" placeholder="Titulo" required>

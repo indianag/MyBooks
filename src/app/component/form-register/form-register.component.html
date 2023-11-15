@@ -3,43 +3,43 @@
         <div class="registroCont">
             <div class="formulario">
                 <div class="pagPrincipal">
-                    <form class="form">
+                    <form [formGroup]="myForm" class="form">
                         <h2 class="form_title">Registrate</h2>
                         <p class="form_paragraph">¿Aun no tienes cuenta?<a routerLink="#" class="form_link"></a></p>
 
                         <div class="form_container">
                             <div class="form_group">
-                                <input type="text" id="name" class="form_input" placeholder=" ">
+                                <input type="text" id="name" class="form_input" placeholder=" " formControlName="name">
                                 <label form="name" class="form_label">Nombre:</label>
                                 <span class="forma_line"></span>
                             </div>
                             <div class="form_group">
-                                <input type="text" id="surname" class="form_input" placeholder=" ">
+                                <input type="text" id="surname" class="form_input" placeholder=" " formControlName="surname">
                                 <label form="surname" class="form_label">Apellido:</label>
                                 <span class="forma_line"></span>
                             </div>
                             <div class="form_group">
-                                <input type="text" id="email" class="form_input" placeholder=" ">
+                                <input type="text" id="email" class="form_input" placeholder=" " formControlName="email">
                                 <label form="email" class="form_label">E-mail</label>
                                 <span class="forma_line"></span>
                             </div>
                             <div class="form_group">
-                                <input type="text" id="url" class="form_input" placeholder=" ">
+                                <input type="text" id="url" class="form_input" placeholder=" " formControlName="url">
                                 <label form="url" class="form_label">Url</label>
                                 <span class="forma_line"></span>
                             </div>
                             <div class="form_group">
-                                <input type="text" id="password" class="form_input" placeholder=" ">
+                                <input type="text" id="password" class="form_input" placeholder=" " formControlName="password">
                                 <label form="password" class="form_label">Contraseña</label>
                                 <span class="forma_line"></span>
                             </div>
                             <div class="form_group">
-                                <input type="text" id="repit_Password" class="form_input" placeholder=" ">
+                                <input type="text" id="repit_Password" class="form_input" placeholder=" " formControlName="repit_Password">
                                 <label form="repit_Password" class="form_label">Repetir contraseña</label>
                                 <span class="forma_line"></span>
                             </div> 
                             
-                            <input type="submit" class="form_submit" value="Registrar">
+                            <input type="submit" class="form_submit" (click)="register()" [disabled]="myForm.invalid" value="Registrar">
                         </div>
                     </form>
                 </div>

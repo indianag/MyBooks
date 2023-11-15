@@ -13,18 +13,18 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  books: Book[];
-  searchId:number;   //variable para almacenar el ID de busqueda//
-  searchResult: Book;    //variable para almacenar el resultado de busqueda//
+  books: Book[]; 
+  searchId:number;   //variable para almacenar el ID de busqueda//  
+  searcheBook: Book[]; //variable para almacenar el resultado de busqueda//
   newBook: Book = new Book();
 
-  @Input() buscarLibro: Book = 
-    {id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"}
 
 
   constructor(public formBookService: FormBookService,
     private route: ActivatedRoute,
-    private booksService: BooksService) { }
+    private booksService: BooksService) {
+     this.books = this.booksService.getAll();
+    }
 
 
   ngOnInit(): void {
@@ -35,37 +35,33 @@ export class BooksComponent implements OnInit {
     this.books.push(this.newBook);
     this.newBook = new Book();
   }
-  // eliminarBook(book: any) {
-  //   const index = this.books.indexOf(book);
-  //   if (index !== -1) {
-  //     this.books.splice(index, 1);
-  //   }
-  // }
-// funcion para buscar libros segun el ID//
-  search(): void{
-    if(this.searchId){
-      this.searchResult = this.booksService.getOne(this.searchId);
-    } else {
-      this.searchResult = null;   // reiniciar el resultado si no hay ID de busqueda
+  searchBookById(){
+    this.books=[];
+    if(this.searchId){   //usar el servicio para obtener el libro por el id//
+      const foundBook = 
+      this.booksService.getOne(this.searchId);
+      if (foundBook){        //si se encuentra el libro, agregalo a la lista de resultados
+        this.books.push(foundBook);
+    } else {      //muestro los libros si no se proporciona un id o no se encuentra el id//
+      this.books = this.booksService.getAll();
+    }
     }
   }
-  //logica para mostrar todos los libros o el resultado de busqueda//
-  getDisplayedBooks(): Book[]{
-    return this.searchResult ? [this.searchResult] : this.books;
-  }
 
-  //funcion para eliminar un libro//+
-  deleteBook(id:number): void{
+  //funcion para eliminar un libro//
+  deleteBook(id:number){
     if(confirm('¿Estás seguro de que deseas eliminar este libro?')){
       const success = this.booksService.delete(id);
-      if( success){
+      if(success){
         //actualizar la lista de libros despues de la eliminacion//
-        this.books = this.booksService.getAll();
+        this.booksService.getOne(id);
         // reiniciar la busqueda//
-        this.searchResult = null;
+      
       } else{
         alert('No se pudo eliminar el libro');
       }
     }
   }
 }
+
+
