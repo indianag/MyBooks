@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-form-register',
@@ -10,13 +11,15 @@ export class FormRegisterComponent implements OnInit{
   public myForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder){
-   
+   this.buildForm();
   }
+
+
   public register(){
     const user = this.myForm.value;
     console.log(user);
   }
-  private buldForm(){
+  private buildForm(){
     const minPassLength = 8;
 
     this.myForm = this.formBuilder.group({
@@ -24,12 +27,16 @@ export class FormRegisterComponent implements OnInit{
       surname:[,Validators.required],
       email: [,[Validators.required, Validators.email]],
       url:"",
-      password: [,[Validators.required, Validators.minLength(minPassLength)]],
-      repit_password: [,[Validators.required, Validators.minLength(minPassLength)]],
-
-    })
+      password: ['',[Validators.required, Validators.minLength(minPassLength)]],
+      repit_Password: ['',[Validators.required]]
+    }, { Validators: this.passwordMatchValidator});
+  }
+  passwordMatchValidator(g:FormGroup){
+    return g.get('password').value === g.get('repit_Password').value ? null : {'mismatch': true};
   }
   ngOnInit(): void {
     
   }
 }
+
+

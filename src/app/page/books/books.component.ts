@@ -5,6 +5,8 @@ import { FormBookService } from '../..//shared/form-book.service';
 import { ActivatedRoute, Route } from '@angular/router';
 import { BooksService } from 'src/app/shared/books.service';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from 'src/app/shared/local-storage.service';
 
 
 @Component({
@@ -22,7 +24,9 @@ export class BooksComponent implements OnInit {
 
   constructor(public formBookService: FormBookService,
     private route: ActivatedRoute,
-    private booksService: BooksService) {
+    private booksService: BooksService,
+    private toastr: ToastrService,
+    private localStoregeSvc: LocalStorageService) {
      this.books = this.booksService.getAll();
     }
 
@@ -34,6 +38,7 @@ export class BooksComponent implements OnInit {
   addBook() {
     this.books.push(this.newBook);
     this.newBook = new Book();
+    
   }
   searchBookById(){
     this.books=[];
@@ -62,6 +67,18 @@ export class BooksComponent implements OnInit {
       }
     }
   }
+  // addNewBook(){  //Metodo para notificar la adicion de un nuevo libro//
+  //   this.toastr.success('nuevo libro añadido correctamente', 'Éxito');
+  // }
+  // editBookSuccess(){   // Metodo para notificar la edicion exitosa de un libro//
+  //   this.toastr.success('Libro editado correctamente', 'Éxito');
+  // }
+  // editBookNotFound(){    //Metodo para notificar que el libro no fue encontrado al editar//
+  //   this.toastr.error('Libro no encontrado al intentar editar', 'Error');
+  // }
+  // idNotFound(){  ///Metodo para notificar que el ID no existe//
+  //   this.toastr.warning('ID de libro no encontrado', 'Advertencia');
+  // }
 }
 
 

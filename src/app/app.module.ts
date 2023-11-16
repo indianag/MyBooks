@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { FormBookService } from './shared/form-book.service';
 import { BooksService } from './shared/books.service';
 import { LoginComponent } from './page/login/login.component';
 import { FormLoginComponent } from './component/form-login/form-login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -45,7 +47,9 @@ import { FormLoginComponent } from './component/form-login/form-login.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [FormBookService, BooksService],
   bootstrap: [AppComponent]

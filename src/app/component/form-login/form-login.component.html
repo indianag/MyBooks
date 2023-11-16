@@ -2,9 +2,10 @@
     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="form">
         <h2 class="form_title">Inicia seccion</h2>
         <div class="form_container">
+           
             <div class="form_group">
                 <input type="email" class="form_input" name="email" [(ngModel)]="login.email" placeholder=" " #emailId="ngModel"
-                [ngClass]="{'is-invalid': (emailId.dirty || emailId.touched) && emailId.ivalid }" required>
+                [ngClass]="{'is-invalid': (emailId.dirty || emailId.touched) && emailId.invalid }" email required>
                 <div *ngIf="(emailId.dirty || emailId.touched) && emailId.invalid" class="invalid-feedback">
                     <div *ngIf="emailId.errors.required">La direccion de Email es obligatoria</div>
                     <div *ngIf="emailId.errors.email">Direccion Email incorrecta</div>
@@ -12,17 +13,18 @@
                 <label form="email" class="form_label">E-mail:</label>
                 <span class="forma_line"></span>
             </div>
+           
             <div class="form_group">
                 <input type="password" class="form_input" name="password" [(ngModel)]="login.password" placeholder=" " #passwordId="ngModel"
-                [ngClass]="{'is-invalid': (passwordId.dirty || passwordId.touched) && passwordId.ivalid }" required>
-                <div *ngIf="(passwordId.dirty || passwordId.touched) && passwordId.invalid">
+                [ngClass]="{'is-invalid': (passwordId.dirty || passwordId.touched) && passwordId.invalid }" minlength="8" required>
+                <div *ngIf="(passwordId.dirty || passwordId.touched) && passwordId.invalid" class="invalid-feedback">
                     <div *ngIf="passwordId.errors.required">La clave es obligatoria</div>
                     <div *ngIf="passwordId.errors.minlength">La clave debe tener al menos 8 caracteres</div>
                 </div>
                 <label form="password" class="form_label">Password:</label>
                 <span class="forma_line"></span>
             </div>                    
-            <input type="submit" class="form_submit" [disabled]="loginForm.invalid" value="Iniciar seccion">
+            <button class="btn btn-danger btn-block" [disabled]="loginForm.invalid" >Iniciar seccion</button>
         </div>
     </form>
 
