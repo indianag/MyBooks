@@ -49,6 +49,7 @@ export class BooksComponent implements OnInit {
         this.books.push(foundBook);
     } else {      //muestro los libros si no se proporciona un id o no se encuentra el id//
       this.books = this.booksService.getAll();
+      this.toastr.warning('ID de libro no encontrado', 'Advertencia');
     }
     }
   }

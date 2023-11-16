@@ -10,9 +10,9 @@ import { ToastrService } from 'ngx-toastr';
 export class BooksService {
 
   public books: Book[] = [
-    {id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"},
-    {id_book: 2, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"},
-    {id_book: 3, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"},
+    {id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "https://www.alianzaeditorial.es/imagenes/libros/grande/9788491049616-moby-dick.jpg"},
+    {id_book: 2, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "https://th.bing.com/th/id/OIP.nwenpbzxiX1rdwotc1lv5QHaK-?rs=1&pid=ImgDetMain"},
+    {id_book: 3, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "https://th.bing.com/th/id/OIP.ftuPQTdwts9EpptpuViyFgHaKu?w=1051&h=1522&rs=1&pid=ImgDetMain"},
   ];
   
   getAll(): Book[]{
@@ -21,7 +21,6 @@ export class BooksService {
  
   getOne(id_libro: number): Book | undefined {
       return this.books.find(book => book.id_book === id_libro);
-      this.toastr.warning('ID de libro no encontrado', 'Advertencia');
       
   }
   add(book: Book): void{
@@ -34,7 +33,7 @@ export class BooksService {
       if (index !== -1) {
         this.books[index] = updateBook;
         this.toastr.success('Libro editado correctamente', 'Éxito');
-        return true;
+        return true; 
       } this.toastr.error('Libro no encontrado al intentar editar', 'Error');
       return false;
   } 

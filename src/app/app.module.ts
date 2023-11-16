@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ToastrModule } from 'ngx-toastr';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,11 @@ import { BooksService } from './shared/books.service';
 import { LoginComponent } from './page/login/login.component';
 import { FormLoginComponent } from './component/form-login/form-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+
+
+
 
 
 
@@ -48,6 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
