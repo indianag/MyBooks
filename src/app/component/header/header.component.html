@@ -1,24 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
 <div class="barra">
     <div class="contenedor">
         <div class="menu">
             <h1 class="logo">MyBooks</h1>
         </div>
-        <ul class="navbar-nav mr-auto">
-            <div class="link">
-                <li class="nav-item" [ngClass]="{'active': currentRoute === 'books'}">
-                <a class="nav-link" routerLink="./home">Home</a>
-                <a class="nav-link" routerLink="./addBook">AddBook</a>
-                <a class="nav-link" routerLink="./updateBook">UpdateBooks</a>
-                <a class="nav-link" routerLink="./books">Books</a>
-                <a class="nav-link" routerLink="./register">Register</a>
-                <a class="nav-link" routerLink="./profiler">Profile</a>
-                <a class="nav-link" routerLink="./login">Login</a>
-                </li>
-            </div>
-        </ul>
+        <div class="link">
+            <a class="nav-link" routerLink="./home">Home</a>
+            <a class="nav-link" routerLink="./addBook">AddBook</a>
+            <a class="nav-link" routerLink="./updateBook">UpdateBooks</a>
+            <a class="nav-link" routerLink="./books">Books</a>
+            <a class="nav-link" routerLink="./register">Register</a>
+            <a class="nav-link" routerLink="./profiler">Profile</a>
+            <a class="nav-link" routerLink="./login">Login</a>
+        </div>
     </div>
 </div>
-
-</nav>

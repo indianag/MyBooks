@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class HeaderComponent {
   currentRoute: string;
 
-  constructor(private router: Router){
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd){
-        this.currentRoute = event.urlAfterRedirects.split('/')[1];
-      }
-    });
+  constructor(){
   }
 
 }
