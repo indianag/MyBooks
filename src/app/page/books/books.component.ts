@@ -6,7 +6,10 @@ import { ActivatedRoute, Route } from '@angular/router';
 import { BooksService } from 'src/app/shared/books.service';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { LocalStorageService } from 'src/app/shared/local-storage.service';
+import { BookResponse } from 'src/app/models/book-response';
+import { Observable } from 'rxjs';
+
+
 
 
 @Component({
@@ -25,61 +28,159 @@ export class BooksComponent implements OnInit {
   constructor(public formBookService: FormBookService,
     private route: ActivatedRoute,
     private booksService: BooksService,
-    private toastr: ToastrService,
-    private localStoregeSvc: LocalStorageService) {
-     this.books = this.booksService.getAll();
-    }
+    private toastr: ToastrService) {}
 
 
   ngOnInit(): void {
-    this.books = this.booksService.getAll();
+ this.booksService.getAll().subscribe((Resp:BookResponse) => {
+  // console.log(Resp)
+  this.books = Resp.books;
+  // console.log(Resp.books)
+});
   }
-
-  addBook() {
-    this.books.push(this.newBook);
-    this.newBook = new Book();
+  // addBook() {
+  //   this.books.push(this.newBook);
+  //   this.newBook = new Book();
     
-  }
+  // }
   searchBookById(){
-    this.books=[];
-    if(this.searchId){   //usar el servicio para obtener el libro por el id//
-      const foundBook = 
-      this.booksService.getOne(this.searchId);
-      if (foundBook){        //si se encuentra el libro, agregalo a la lista de resultados
-        this.books.push(foundBook);
-    } else {      //muestro los libros si no se proporciona un id o no se encuentra el id//
-      this.books = this.booksService.getAll();
-      this.toastr.warning('ID de libro no encontrado', 'Advertencia');
-    }
-    }
-  }
+    
+    this.booksService.getOne(this.searchId).subscribe((Resp:BookResponse) => {
+      console.log(Resp)
+      if(Resp.error)
+      alert ("el usuario no existe");
+    else
+      this.booksService.getAll()
+    })
+    //  //usar el servicio para obtener el libro por el id//
+    //   this.booksService.getOne(this.searchId).subscribe((Resp:BookResponse) => {
+    //    if (this.searchId) {        //si se encuentra el libro, agregalo a la lista de resultados
+    //     this.books.push(this.newBook);
+    // } else {      //muestro los libros si no se proporciona un id o no se encuentra el id//
+    //   this.booksService.getAll().subscribe((Resp:BookResponse)=>{
+    //     this.books = Resp.books
+    //   });
+      
+
+    //   this.toastr.warning('ID de libro no encontrado', 'Advertencia');
+    // }
+    // })
+   }
+  
 
   //funcion para eliminar un libro//
-  deleteBook(id:number){
-    if(confirm('¿Estás seguro de que deseas eliminar este libro?')){
-      const success = this.booksService.delete(id);
-      if(success){
-        //actualizar la lista de libros despues de la eliminacion//
-        this.booksService.getOne(id);
-        // reiniciar la busqueda//
+  // deleteBook(id:number){
+  //   if(confirm('¿Estás seguro de que deseas eliminar este libro?')){
+  //     const success = this.booksService.delete(id);
+  //     if(success){
+  //       //actualizar la lista de libros despues de la eliminacion//
+  //       this.booksService.getOne(id);
+  //       // reiniciar la busqueda//
       
-      } else{
-        alert('No se pudo eliminar el libro');
-      }
-    }
-  }
-  // addNewBook(){  //Metodo para notificar la adicion de un nuevo libro//
-  //   this.toastr.success('nuevo libro añadido correctamente', 'Éxito');
-  // }
-  // editBookSuccess(){   // Metodo para notificar la edicion exitosa de un libro//
-  //   this.toastr.success('Libro editado correctamente', 'Éxito');
-  // }
-  // editBookNotFound(){    //Metodo para notificar que el libro no fue encontrado al editar//
-  //   this.toastr.error('Libro no encontrado al intentar editar', 'Error');
-  // }
-  // idNotFound(){  ///Metodo para notificar que el ID no existe//
-  //   this.toastr.warning('ID de libro no encontrado', 'Advertencia');
+  //     } else{
+  //       alert('No se pudo eliminar el libro');
+  //     }
+  //   }
   // }
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ngOnInit(): void {
+//   this.booksService.getAll().subscribe((Resp:BookResponse) => {
+//    // console.log(Resp)
+//    this.books = Resp.books;
+//    // console.log(Resp.books)
+//  });
+//    }
+//    addBook() {
+//      this.books.push(this.newBook);
+//      this.newBook = new Book();
+     
+//    }
+//    searchBookById(){
+//      this.books=[];
+//      if(this.searchId){   //usar el servicio para obtener el libro por el id//
+//        const foundBook = 
+//        this.booksService.getOne(this.searchId);
+//        if (foundBook){        //si se encuentra el libro, agregalo a la lista de resultados
+//          this.books.push(foundBook);
+//      } else {      //muestro los libros si no se proporciona un id o no se encuentra el id//
+//        this.books = this.booksService.getAll();
+//        this.toastr.warning('ID de libro no encontrado', 'Advertencia');
+//      }
+//      }
+//    }
+ 
+//    //funcion para eliminar un libro//
+//    deleteBook(id:number){
+//      if(confirm('¿Estás seguro de que deseas eliminar este libro?')){
+//        const success = this.booksService.delete(id);
+//        if(success){
+//          //actualizar la lista de libros despues de la eliminacion//
+//          this.booksService.getOne(id);
+//          // reiniciar la busqueda//
+       
+//        } else{
+//          alert('No se pudo eliminar el libro');
+//        }
+//      }
+//    }}

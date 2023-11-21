@@ -4,6 +4,7 @@ import { BooksService } from 'src/app/shared/books.service';
 import { Router } from '@angular/router';
 import { Book } from 'src/app/models/book';
 import { ToastrService } from 'ngx-toastr';
+import { BookResponse } from 'src/app/models/book-response';
 
 @Component({
   selector: 'app-add-book',
@@ -21,7 +22,9 @@ export class AddBookComponent {
   //funcion para agregar un nuevo libro//
 
   addBook(): void{
-    this.booksService.add(this.nuevoLibro);
+    this.booksService.add(this.nuevoLibro).subscribe((Resp:BookResponse) => {
+
+    });
     this.router.navigate(['/books']); //Redirigir a la pagina de libros despues de agregar.
     
   }
