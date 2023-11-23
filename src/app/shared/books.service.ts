@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BookResponse } from '../models/book-response';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -21,23 +22,58 @@ export class BooksService {
     return this.http.get(`${this.apiUrl}/books`);
   }
  
-  getOne(id_book: number) {
-    return this.http.get(`${this.apiUrl}/books?id=${id_book}`);
-      
+  getOne(id: number) {
+    return this.http.get(`${this.apiUrl}/books/${id}`);
   }
+
   add(book: Book) {
     return this.http.post(`${this.apiUrl}/books`, book);
   }
-  edit(updateBook: Book){
-    return this.http.put(`${this.apiUrl}/books`, updateBook);
-  } 
-  delete(id_book: number) {
-    return this.http.delete(`${this.apiUrl}/books/${id_book}`);
+
+  edit(book: Book): Observable<any> {
+    return this.http.put(`${this.apiUrl}/books`, book);
+  }
+
+  delete(id_book:number)
+  {
+    console.log(id_book)
+    const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), 
+    body:{id:id_book}
+  };
+    return this.http.delete(`${this.apiUrl}/books`, httpOptions);
   }
 
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// public delUsuario(id_number:number)
+//   {
+//     console.log(id);
+//     const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body:{ id:id_number}
+//     return this.http.delete(this.url, httpOptions)
+//   }
 
 
 

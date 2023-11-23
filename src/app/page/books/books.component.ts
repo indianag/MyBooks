@@ -32,73 +32,43 @@ export class BooksComponent implements OnInit {
 
 
   ngOnInit(): void {
- this.booksService.getAll().subscribe((Resp:BookResponse) => {
-  // console.log(Resp)
-  this.books = Resp.books;
-  // console.log(Resp.books)
-});
+  this.booksService.getAll().subscribe((Resp:BookResponse) => {
+    this.books = Resp.books;
+    });
   }
-  // addBook() {
-  //   this.books.push(this.newBook);
-  //   this.newBook = new Book();
-    
-  // }
-  searchBookById(){
-    
-    this.booksService.getOne(this.searchId).subscribe((Resp:BookResponse) => {
-      console.log(Resp)
-      if(Resp.error)
-      alert ("el usuario no existe");
-    else
-      this.booksService.getAll()
-    })
-    //  //usar el servicio para obtener el libro por el id//
-    //   this.booksService.getOne(this.searchId).subscribe((Resp:BookResponse) => {
-    //    if (this.searchId) {        //si se encuentra el libro, agregalo a la lista de resultados
-    //     this.books.push(this.newBook);
-    // } else {      //muestro los libros si no se proporciona un id o no se encuentra el id//
-    //   this.booksService.getAll().subscribe((Resp:BookResponse)=>{
-    //     this.books = Resp.books
-    //   });
-      
+  deleteBook(searchId:number){
+      this.booksService.delete(searchId).subscribe((Resp: BookResponse) => {
+         this.booksService.getAll().subscribe((resp: BookResponse) =>{
+            this.books= resp.books
+         })
+      }, 
+      error => {
+        console.error(error);
+      }
+      );
 
-    //   this.toastr.warning('ID de libro no encontrado', 'Advertencia');
-    // }
-    // })
-   }
+    }
   
+  searchBookById(){     
+    this.booksService.getOne(this.searchId).subscribe(
+      (resp: BookResponse) => {
+        if (resp.books.length > 0) {
+          this.books = resp.books;
+          this.toastr.success('Libro encontrado', 'Éxito');
+        } else {
+          this.toastr.warning('ID de libro no encontrado', 'Advertencia');
+        }
+      },
+      (error) => {
+        console.error('Error al obtener el libro por ID', error);
+        this.toastr.error('Error al obtener el libro por ID', 'Error');
+      }
+    );
 
-  //funcion para eliminar un libro//
-  // deleteBook(id:number){
-  //   if(confirm('¿Estás seguro de que deseas eliminar este libro?')){
-  //     const success = this.booksService.delete(id);
-  //     if(success){
-  //       //actualizar la lista de libros despues de la eliminacion//
-  //       this.booksService.getOne(id);
-  //       // reiniciar la busqueda//
-      
-  //     } else{
-  //       alert('No se pudo eliminar el libro');
-  //     }
-  //   }
-  // }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   }
 
 
 
