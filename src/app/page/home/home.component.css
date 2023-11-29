@@ -4,9 +4,9 @@
     box-sizing: border-box;
     overflow: hidden;
 }
-.container{
+.inicio{
     /* border: 3px solid red; */
-    height:98vh;
+    height:100vh;
     background-image: url("../../../assets/img/FONDO.SHADOW.png");
     background-repeat: no-repeat;
     background-size: cover;

@@ -14,11 +14,11 @@
             </div>
 
             <div class="form_group">
-                <input type="text" id="surname" class="form_input" placeholder=" " formControlName="surname"
-                    [ngClass]="{'is-invalid': (myForm.get('surname').dirty || myForm.get('surname').touched) && !myForm.get('surname').valid}">
-                <div *ngIf="!myForm.get('surname').valid" class="invalid-feedback">El apellido es
+                <input type="text" id="last_name" class="form_input" placeholder=" " formControlName="last_name"
+                    [ngClass]="{'is-invalid': (myForm.get('last_name').dirty || myForm.get('last_name').touched) && !myForm.get('last_name').valid}">
+                <div *ngIf="!myForm.get('last_name').valid" class="invalid-feedback">El apellido es
                     necesario</div>
-                <label form="surname" class="form_label">Apellido:</label>
+                <label form="last_name" class="form_label">Apellido:</label>
                 <span class="forma_line"></span>
             </div>
 
@@ -35,8 +35,8 @@
             </div>
 
             <div class="form_group">
-                <input type="text" id="url" class="form_input" placeholder=" " formControlName="url">
-                <label form="url" class="form_label">Url</label>
+                <input type="text" id="photo" class="form_input" placeholder=" " formControlName="photo">
+                <label form="photo" class="form_label">Url</label>
                 <span class="forma_line"></span>
             </div>
 
@@ -68,6 +68,6 @@
                 <span class="forma_line"></span>
             </div>
 
-            <button class="btn btn-danger btn-block" (click)="register()" [disabled]="myForm.invalid">Registrar</button>
+            <button class="btn btn-danger btn-block" (click)="registrarse()" [disabled]="myForm.invalid">Registrar</button>
         </div>
     </form>

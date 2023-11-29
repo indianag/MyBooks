@@ -18,15 +18,17 @@ export class BooksService {
               private http: HttpClient) { }
 
  
-  getAll(){
-    return this.http.get(`${this.apiUrl}/books`);
-  }
+getAll(id_user: number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/books?id_user=${id_user}`);
+}
  
-  getOne(id: number) {
-    return this.http.get(`${this.apiUrl}/books/${id}`);
-  }
+getOne(Id_user: number, Id_book: number): Observable<any> {
+  console.log(Id_book)
+  console.log(Id_user)
+  return this.http.get(`${this.apiUrl}/book?id_user=${Id_user}&id_book=${Id_book}`);
+}
 
-  add(book: Book) {
+  add(book: any) {
     return this.http.post(`${this.apiUrl}/books`, book);
   }
 
@@ -34,14 +36,12 @@ export class BooksService {
     return this.http.put(`${this.apiUrl}/books`, book);
   }
 
-  delete(id_book:number)
-  {
-    console.log(id_book)
-    const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), 
-    body:{id:id_book}
-  };
-    return this.http.delete(`${this.apiUrl}/books`, httpOptions);
+  delete(Id_book: number) {
+    console.log(Id_book)
+    return this.http.delete(`${this.apiUrl}/books?id_book=${Id_book}`);
+    
   }
+
 
 }
 

@@ -14,7 +14,7 @@ import { BookResponse } from 'src/app/models/book-response';
 export class AddBookComponent {
   book : Book[];
   nuevoLibro: Book = //inicializar los atributos del nuevo libro//
-    {id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"};
+    {Id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"};
 
   constructor(private booksService: BooksService,
               private router: Router,

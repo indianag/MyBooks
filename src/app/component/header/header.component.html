@@ -4,13 +4,13 @@
             <h1 class="logo">MyBooks</h1>
         </div>
         <div class="link">
-            <a class="nav-link" routerLink="./home">Home</a>
-            <a class="nav-link" routerLink="./addBook">AddBook</a>
-            <a class="nav-link" routerLink="./updateBook">UpdateBooks</a>
-            <a class="nav-link" routerLink="./books">Books</a>
-            <a class="nav-link" routerLink="./register">Register</a>
-            <a class="nav-link" routerLink="./profiler">Profile</a>
-            <a class="nav-link" routerLink="./login">Login</a>
+            <a *ngIf="!this.usuarioService.logueado" class="nav-link" routerLink="">Home</a>
+            <a *ngIf="this.usuarioService.logueado" class="nav-link" routerLink="./addBook">AddBook</a>
+            <a *ngIf="this.usuarioService.logueado" class="nav-link" routerLink="./updateBook">UpdateBooks</a>
+            <a *ngIf="this.usuarioService.logueado" class="nav-link" routerLink="./books">Books</a>
+            <a *ngIf="!this.usuarioService.logueado" class="nav-link" routerLink="./register">Register</a>
+            <a *ngIf="this.usuarioService.logueado" class="nav-link" routerLink="./profiler">Profile</a>
+            <a *ngIf="!this.usuarioService.logueado" class="nav-link" routerLink="./login">Login</a>
         </div>
     </div>
 </div>

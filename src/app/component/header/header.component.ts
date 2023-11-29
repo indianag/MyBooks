@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UsuarioService } from 'src/app/shared/usuario.service';
+
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,7 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   currentRoute: string;
 
-  constructor(){
+  constructor(public usuarioService: UsuarioService){
   }
 
 }

@@ -14,7 +14,7 @@ export class UpdateBookComponent {
   book:Book[];
   bookId: number;
   bookToUpdate: Book = 
-    {id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"};
+    {Id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"};
   
   
   constructor(private booksService: BooksService,

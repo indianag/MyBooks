@@ -4,7 +4,7 @@
         <div class="form_container">
            
             <div class="form_group">
-                <input type="email" class="form_input" name="email" [(ngModel)]="login.email" placeholder=" " #emailId="ngModel"
+                <input type="email" class="form_input" name="email" [(ngModel)]="user.email" placeholder=" " #emailId="ngModel"
                 [ngClass]="{'is-invalid': (emailId.dirty || emailId.touched) && emailId.invalid }" email required>
                 <div *ngIf="(emailId.dirty || emailId.touched) && emailId.invalid" class="invalid-feedback">
                     <div *ngIf="emailId.errors.required">La direccion de Email es obligatoria</div>
@@ -15,7 +15,7 @@
             </div>
            
             <div class="form_group">
-                <input type="password" class="form_input" name="password" [(ngModel)]="login.password" placeholder=" " #passwordId="ngModel"
+                <input type="password" class="form_input" name="password" [(ngModel)]="user.password" placeholder=" " #passwordId="ngModel"
                 [ngClass]="{'is-invalid': (passwordId.dirty || passwordId.touched) && passwordId.invalid }" minlength="8" required>
                 <div *ngIf="(passwordId.dirty || passwordId.touched) && passwordId.invalid" class="invalid-feedback">
                     <div *ngIf="passwordId.errors.required">La clave es obligatoria</div>
@@ -24,7 +24,7 @@
                 <label form="password" class="form_label">Password:</label>
                 <span class="forma_line"></span>
             </div>                    
-            <button class="btn btn-danger btn-block" [disabled]="loginForm.invalid" >Iniciar seccion</button>
+            <button type="submit" class="btn btn-danger btn-block" [disabled]="loginForm.invalid" >Iniciar seccion</button>
         </div>
     </form>
 
