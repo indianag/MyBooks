@@ -1,15 +1,223 @@
 <div class="bienvenido">
 <div class="form-body">
     <p class="text">Añadir Libro</p>
-    <form (submit)="addBook()" class="login-form">
-        <input type="number" id="Id_book" name="Id_book" [(ngModel)]="nuevoLibro.Id_book" [ngModelOptions]="{standalone: true}" placeholder="Libro" />
-        <input type="text" id="id_user" [(ngModel)]="nuevoLibro.id_user" [ngModelOptions]="{standalone: true}" placeholder="Usuario" />
-        <input type="text" id="title" [(ngModel)]="nuevoLibro.title" [ngModelOptions]="{standalone: true}" placeholder="Titulo" />
-        <input type="text" id="type" [(ngModel)]="nuevoLibro.type" [ngModelOptions]="{standalone: true}" placeholder="Tapa blanda/dura" />
-        <input type="text" id="author" [(ngModel)]="nuevoLibro.author" [ngModelOptions]="{standalone: true}" placeholder="Autor" />
-        <input type="text" id="price" [(ngModel)]="nuevoLibro.price" [ngModelOptions]="{standalone: true}" placeholder="Precio" />
-        <input type="text" id="photo" [(ngModel)]="nuevoLibro.photo" [ngModelOptions]="{standalone: true}" placeholder="Photo" />
-        <button type="submit">Insertar Libro</button>
+    <form  class="login-form">
+        <!-- <input type="number" id="Id_book" name="Id_book" [(ngModel)]="nuevoLibro.Id_book" [ngModelOptions]="{standalone: true}" placeholder="Id_book" /> -->
+        <!-- <input type="text" id="Id_user" [(ngModel)]="nuevoLibro.Id_user" [ngModelOptions]="{standalone: true}" placeholder="Usuario" /> -->
+        <input type="text" #title  placeholder="Titulo" />
+        <input type="text" #type  placeholder="Tapa blanda/dura" />
+        <input type="text" #author  placeholder="Autor" />
+        <input type="text" #price  placeholder="Precio" />
+        <input type="text" #photo  placeholder="Photo" />
+        <button (click)="addBook(title.value, type.value, author.value, price.value, photo.value)" type="button">Insertar Libro</button>
     </form>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="bienvenido">
+    <div class="form-body">
+      <p class="text">Añadir Libro</p>
+      <form (ngSubmit)="addBook()" class="login-form" [formGroup]="addBookForm">
+        <input type="number" formControlName="Id_book" placeholder="Id_book" />
+        <input type="number" formControlName="Id_user" placeholder="Usuario" />
+        <input type="text" formControlName="title" placeholder="Titulo" />
+        <input type="text" formControlName="type" placeholder="Tapa blanda/dura" />
+        <input type="text" formControlName="author" placeholder="Autor" />
+        <input type="text" formControlName="price" placeholder="Precio" />
+        <input type="text" formControlName="photo" placeholder="Photo" />
+        <button type="submit" [disabled]="addBookForm">Insertar Libro</button>
+      </form>
+    </div>
+  </div>
+ -->
+
+
+
+<!-- 
+
+
+import { Component } from '@angular/core';
+import { FormBookService } from '../../shared/form-book.service'
+import { BooksService } from 'src/app/shared/books.service';
+import { Router } from '@angular/router';
+import { Book } from 'src/app/models/book';
+import { ToastrService } from 'ngx-toastr';
+import { BookResponse } from 'src/app/models/book-response';
+import { UsuarioService } from 'src/app/shared/usuario.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-add-book',
+  templateUrl: './add-book.component.html',
+  styleUrls: ['./add-book.component.css']
+})
+export class AddBookComponent {
+  addBookForm: FormGroup;
+  book : Book[];
+  nuevoLibro: Book = //inicializar los atributos del nuevo libro//
+    {Id_book: 1, id_user: 32, title: "Moby Dick", type: "Ficción náutica", author: "Herman Melville", price: 10, photo: "foto1"};
+
+  constructor(private booksService: BooksService,
+              private router: Router,
+              private toastr: ToastrService,
+              private userService: UsuarioService,
+              private formBuilder: FormBuilder){}
+
+
+
+
+
+ngOnInit(): void {
+  this.addBookForm = this.formBuilder.group({
+    Id_book: [null, Validators.required],
+    id_user: ['', Validators.required],
+    title: ['', Validators.required],
+    type: ['', Validators.required],
+    author: ['', Validators.required],
+    price: ['', Validators.required],
+    photo: ['', Validators.required],
+  });
+}
+  //funcion para agregar un nuevo libro//
+
+  addBook(): void{
+    if (this.addBookForm.invalid) {
+      // Manejar el formulario inválido si es necesario
+      return;
+    }
+    // Obtener el usuario logueado
+    const Id_user = this.userService.user.Id_user;
+
+    // Construir el objeto libro para agregar
+    const newBook = {
+      Id_user: Id_user,
+      title: this.addBookForm.value.title,
+      type: this.addBookForm.value.type,
+      author: this.addBookForm.value.author,
+      price: this.addBookForm.value.price,
+      photo: this.addBookForm.value.photo,
+    };
+
+    this.booksService.add(newBook).subscribe((response: any) => {
+        console.log(response);
+      
+        this.booksService.getAll(Id_user).subscribe(
+          (booksResponse: any) => {
+            // Actualizar la lista de libros en el servicio (asumiendo que tienes una propiedad books en tu servicio)
+            this.book = booksResponse.books;
+
+            // Redirigir a la página de libros
+            this.router.navigate(['/books']);
+          },
+          (error: any) => {
+            console.error('Error al obtener la lista actualizada de libros', error);
+            // Manejar el error según tus necesidades
+          }
+        );
+        // Limpiar el formulario después de agregar el libro
+        this.addBookForm.reset();
+      }),
+      (error: any) => {
+        console.error('Error al agregar el libro', error);
+        // Manejar el error según tus necesidades
+      }
+    }
+     -->

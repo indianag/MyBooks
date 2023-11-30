@@ -22,6 +22,7 @@ books: Book[];
     eliminarTarjeta(books:Book){
 
       this.eliminar.emit(books.Id_book);
+      console.log(books.Id_book)
     }
 
 }

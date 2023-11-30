@@ -29,14 +29,16 @@ getOne(Id_user: number, Id_book: number): Observable<any> {
 }
 
   add(book: any) {
+    console.log(book)
     return this.http.post(`${this.apiUrl}/books`, book);
   }
 
   edit(book: Book): Observable<any> {
+    console.log(book)
     return this.http.put(`${this.apiUrl}/books`, book);
   }
 
-  delete(Id_book: number) {
+  deleteBook(Id_book: number) {
     console.log(Id_book)
     return this.http.delete(`${this.apiUrl}/books?id_book=${Id_book}`);
     

@@ -25,6 +25,7 @@ export class BooksComponent implements OnInit {
   searcheBook: Book[]; //variable para almacenar el resultado de busqueda//
   newBook: Book = new Book();
   Id_user:number;
+  
   singleBook:any;
   showSingleBook:any;
 
@@ -55,17 +56,23 @@ searchBookById() {
     (resp: BookResponse) => {
       console.log(this.userService.user.Id_user)
       console.log(this.searchId)
-      if (!resp.books) {
+      if (resp.error) {
+        this.booksService.getAll(this.userService.user.Id_user).subscribe((resp:BookResponse) => {
+          this.books = resp.books;
+           
+          })
         // Mostrar el libro encontrado, puedes asignarlo a una variable en tu componente
-        this.books = this.books.filter(book => book.Id_book == this.searchId);
-        console.log(this.books)
-        console.log(this.books)
+   
+        this.toastr.error(resp.message);
+        
         // Actualizar la lista de libros solo si estamos mostrando un solo libro
         } else {
-        console.log('Libro no encontrado.' )
-          this.booksService.getAll(this.userService.user.Id_user).subscribe((Resp:BookResponse) => {
-            this.books = resp.books;
-      })
+          this.toastr.success(resp.message);
+               
+          this.books = resp.books;
+          console.log(resp.books)
+          console.log(this.books)
+      //     
     }(error) => {
       console.error('Error al buscar el libro por ID:', error);
     }
@@ -74,24 +81,23 @@ searchBookById() {
   
 
 
-loadBooks() {
-  this.booksService.getAll(this.userService.user.Id_user).subscribe(
-    (resp: BookResponse) => {
-      // Mostrar solo el libro encontrado si estamos en el modo de visualización de un solo libro
-      this.books = this.showSingleBook ? [this.singleBook] : (resp.books || []);
-    },
-    (error) => {
-      console.error('Error al obtener libros:', error);
-    }
-  );
-}
-
-
-deleteBook(): void {
-  this.booksService.delete(this.searchId).subscribe(
+deleteBook(Id_book: number): void {
+  this.booksService.deleteBook(Id_book).subscribe(
     response => {
       console.log('Libro eliminado correctamente', response);
-      // Puedes realizar alguna acción adicional si es necesario
+      
+      // Después de eliminar, obtenemos la lista actualizada de libros
+      this.booksService.getAll(this.userService.user.Id_user).subscribe(
+        response => {
+          // Actualizamos la lista de libros en el componente
+          this.books = response.books;
+        },
+        error => {
+          console.error('Error al obtener la lista actualizada de libros', error);
+          // Manejar el error según tus necesidades
+        }
+      );
+
     },
     error => {
       console.error('Error al eliminar el libro', error);
@@ -99,116 +105,6 @@ deleteBook(): void {
     }
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // deleteBook(searchId: number) {
-  //   this.booksService.delete(searchId).subscribe(
-  //     () => {
-  //       console.log(`${searchId} eliminado correctamente`);
-  
-  //       // Eliminar el libro de la lista actual
-  //       this.books = this.books.filter(book => book.Id_book !== searchId);
-  
-  //       // Mostrar los libros restantes
-  //       this.booksService.getOne(this.userService.user.Id_user, this.searchId).subscribe((Resp:BookResponse) => {
-  //         this.books = Resp.books;
-  //         });
-  //     },
-  //     (error) => {
-  //       console.error('Error al eliminar el libro:', error);
-  //     }
-  //   );
-  // }
-  
-  // searchBookById() {
-  //   this.booksService.getOne(this.userService.user.Id_user, this.searchId).subscribe(
-  //     (resp: BookResponse) => {
-  //       if (resp.books) {
-  //         console.log('Libro encontrado:', resp.books);
-  //         // Mostrar el libro encontrado, puedes asignarlo a una variable en tu componente
-  //         this.singleBook = resp.books;
-  //         this.showSingleBook = true;
-  //       } else {
-  //         console.log('Libro no encontrado.');
-  //         this.loadBooks(); // Mostrar todos los libros después de buscar por ID si no se encuentra
-  //         this.showSingleBook = false;
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('Error al buscar el libro por ID:', error);
-  //     }
-  //   );
-  // }
-  
-
-
-
 
 }
 

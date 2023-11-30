@@ -22,6 +22,12 @@ export class UsuarioService {
     return this.http.post(`${this.url}/login`, user);
   }
 
-}
+  updateUser(user:User): Observable<any> {
+    return this.http.put(`${this.url}/usuarios`, user);
+  }
 
+  edit(user: User): Observable<any> {
+    return this.http.put(`${this.url}/usuarios`, user);
+}
+}
 
