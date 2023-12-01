@@ -15,11 +15,12 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userService: UsuarioService,
               private bookService: BooksService){
-    // this.myUser = new User(1991, "indiana", "granado", "indi@gmail", "url", "oddi")
+     this.myUser = this.userService.user;
+
   }
 
   public nombreCompleto():string{
-    return this.myUser.nombreCompleto();
+    return this.myUser.name + " " + this.myUser.last_name
   }
 
   enviar(nuevoNombre: HTMLInputElement,nuevoApp:HTMLInputElement, email:HTMLInputElement, url:HTMLInputElement){
@@ -42,14 +43,14 @@ export class ProfileComponent implements OnInit {
   }
 
 ngOnInit(): void {
-  this.bookService.getAll(this.userService.user.Id_user).subscribe(
-    (user: User) => {
-      this.myUser = user;
-    },
-    (error) => {
-      console.error('Error al obtener datos del usuario:', error);
-    }
-  );
+  // this.bookService.getAll(this.userService.user.Id_user).subscribe(
+  //   (user: User) => {
+  //     this.myUser = user;
+  //   },
+  //   (error) => {
+  //     console.error('Error al obtener datos del usuario:', error);
+  //   }
+  // );
 }
 
 }

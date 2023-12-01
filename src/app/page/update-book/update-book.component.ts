@@ -32,8 +32,8 @@ export class UpdateBookComponent {
       author,
       price,
       photo,
-      Id_book,
-      this.userService.user.Id_user
+      this.userService.user.Id_user,
+      Id_book
 
     );
     this.booksService.edit(nuevoLibro).subscribe(
